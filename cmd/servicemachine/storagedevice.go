@@ -79,7 +79,7 @@ func GetStorageDetails() Blockdevice {
 				blkdevice.Devices[indexParent].Children[indexChildren].Available = strconv.FormatFloat(float64(disk.Free)/float64(GB), 'f', 2, 64) + "GB"
 				blkdevice.Devices[indexParent].Children[indexChildren].Used = strconv.FormatFloat(float64(disk.Used)/float64(GB), 'f', 2, 64) + "GB"
 				blkdevice.Devices[indexParent].Children[indexChildren].Percent =
-					strconv.FormatFloat(float64(disk.Used)/float64(disk.All)*100, 'f', 2, 64) + "%"
+					strconv.FormatFloat(float64(disk.Used)/float64(disk.All)*100, 'f', 2, 64)
 			}
 		}
 	}

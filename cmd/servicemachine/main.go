@@ -1,21 +1,15 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
+	//"encoding/json"
+	//"fmt"
+	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func main() {
-
-	// jsonA, _ := json.Marshal(GetCpuDetails())
-	// fmt.Println(string(jsonA))
-
-	// blockdevice := GetStorageDetails()
-	// b, _ := json.Marshal(blockdevice)
-	// fmt.Println(string(b))
-
-	var blockMemory BlockMemory
-	blockMemory.GetMemoryDetails()
-	memory, _ := json.Marshal(blockMemory)
-	fmt.Println(string(memory))
+	router := mux.NewRouter()
+	router.HandleFunc("/{type}", typeHandle).Methods("GET")
+	http.ListenAndServe(":8989", router)
 }

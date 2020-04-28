@@ -67,6 +67,21 @@ func CalculateMediumCpu(info map[string][]float64) Blockcpu {
 	return blockCpu
 }
 
+func GetCpuDetailsRoutine() <-chan Blockcpu {
+	c := make(chan Blockcpu)
+	go func() {
+		for {
+
+			firstStat := GetProcStat()
+			time.Sleep(time.Second * 3) //3 seconds like top
+			secondStat := GetProcStat()
+			difference := DifferenceProcStat(firstStat, secondStat)
+			c <- CalculateMediumCpu(difference)
+		}
+	}()
+	return c
+}
+
 func GetCpuDetails() Blockcpu {
 
 	firstStat := GetProcStat()

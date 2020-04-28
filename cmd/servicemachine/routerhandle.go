@@ -15,7 +15,9 @@ func typeHandle(w http.ResponseWriter, r *http.Request) {
 	var err error
 	switch vars["type"] {
 	case "cpu":
-		data, err = json.MarshalIndent(GetCpuDetails(), "", "    ")
+		//data, err = json.MarshalIndent(GetCpuDetails(), "", "    ") Usage without goroutine
+		routine := GetCpuDetailsRoutine()
+		data, err = json.MarshalIndent(<-routine, "", "    ")
 	case "storage":
 
 		data, err = json.MarshalIndent(GetStorageDetails(), "", "    ")

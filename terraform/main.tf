@@ -128,6 +128,14 @@ resource "aws_security_group" "allow_ssh_http" {
     cidr_blocks = ["0.0.0.0/0"]   // allow access from any IP
   }
 
+    ingress {
+    description = "Port used by my go cli tool"
+    from_port   = 8989
+    to_port     = 8989
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]   // allow access from any IP
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
